@@ -28,6 +28,8 @@ Repositório da Disciplina Estrutura de dados II
 . Para comitar uma alteração local para a nuvem
 	.git commit -m "MENSAGEM"
 	.git push
+. Para sobrescrever o último commit
+	.git commit -am
 
 ### COMANDOS ADICIONAIS
 
@@ -38,6 +40,8 @@ git log
 git log --oneline
 git show "versão"
 git checkout "versão"
+git checkout main
+git remove -v
 
 #### OBS
 
