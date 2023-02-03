@@ -49,3 +49,15 @@ Nem sempre o git abre o navegador para continuar a autenticação de credenciais
 EMAIL
 TOKEN - Github>Foto de perfil>Settings>UltimoDeveloper Settings>Personal access tokens> Tokens(classic) 
 -> Generation New Token Classic > Selecionar expiração> ilimitada> escopo> repo
+
+## Versionamento
+
+V[major].[minor].[patch]
+
+[patch]: correção de bugs/otimização
+[minor]: novas funcionalidades compátiveis com versões anteriores
+{manor]: novas funcionalidades incompátiveis com versões anteriores
+
+(a)aplha, (b)beta
+
+Exemplo: v0.9.1; v1.0.0; v1.0.2; v1.2.3
