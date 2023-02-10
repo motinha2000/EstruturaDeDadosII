@@ -1,4 +1,4 @@
-all: clean ponteiro
+all: clean ponteiro ponteiro_duplo
 
 ponteiro:
 	@echo
@@ -13,7 +13,7 @@ ponteiro:
 	@echo =============================================
 	@echo 
 	./ponteiro
-	
+
 clean:
 	@echo
 	@echo ========================================
@@ -21,3 +21,18 @@ clean:
 	@echo ========================================
 	@echo Removendo o programa ponteiro
 	rm -f ponteiro
+	rm -f ponteiro_duplo
+
+ponteiro_duplo:
+	@echo
+	@echo =============================
+	@echo 		PONTEIRO DUPLO
+	@echo =============================
+	@echo Compilando o programa Ponteiro Duplo
+	gcc ponteiro_duplo.c -o ponteiro_duplo
+	@echo Tornando o arquivo executável
+	chmod +x ponteiro_duplo
+	@echo Executando o programa Ponteiro Duplo
+	@echo =============================================
+	@echo 
+	./ponteiro_duplo

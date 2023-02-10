@@ -14,17 +14,12 @@ int main() {
     numberP++;
     printf("Valor da variável numberP: %p\n", numberP);
     printf("Valor no endereço apontado: %d\n", *numberP);
-    
-    float *pi;
-    printf("\nValor da variável pi: %p\n", *pi);
-    pi = (float *) malloc(sizeof(float));
-    printf("\nValor da variável pi: %p\n", *pi);
-
+    float *pi = (float *) malloc(sizeof(float));
     printf("Valor da variável pi: %p\n", pi);
     *pi=3.1415;
     printf("Valor no endereço apontado: %f\n", *pi);
     free(pi);
-    printf("Valor da variável pi: %p\n", *pi);
+    printf("Valor da variável pi: %p\n", pi);
     printf("Valor da variável apontada: %f\n", *pi);
     *pi = 0;
     pi = NULL;
