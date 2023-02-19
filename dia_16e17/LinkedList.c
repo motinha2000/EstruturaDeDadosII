@@ -17,7 +17,7 @@ int enqueue(LinkedList *list, void *data){
    log_info("Adicionando elemento a lista");
    log_trace("init ->");
    if(list == NULL){
-        log_error("Parâmetro inválido");
+        log_error("Parametro invalido");
         log_debug("list: %p", list);
         return 1;
    }

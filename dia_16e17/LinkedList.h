@@ -15,7 +15,7 @@ typedef struct LinkedList{
 
 typedef bool (*compare)(void*,void*);
 
-void init(LinkedList *list);
+void init(LinkedList *list);//FEITO
 int enqueue(LinkedList *list, void *data);
 void* dequeue(LinkedList *list);
 void* first(LinkedList *list);
@@ -23,7 +23,7 @@ void* last(LinkedList *list);
 int push(LinkedList *list, void *data);
 void* pop(LinkedList *list);
 void* top(LinkedList *list);
-bool isEmpty(LinkedList *list);
+bool isEmpty(LinkedList *list);//FEITO
 int indexOf(LinkedList *list, void *data, compare equal);
 void* getPos(LinkedList *list, int pos);
 Node* getNodeByPos(LinkedList *list, int pos);
