@@ -155,15 +155,6 @@ int indexOf(LinkedList *list, void *data, compare equal)
     }
 }
 
-void *getPos(LinkedList *list, int pos)
-{
-    Node *aux = getNodeByPos(list, pos);
-    if (aux == NULL)
-        return NULL;
-    else
-        return aux->data;
-}
-
 Node *getNodeByPos(LinkedList *list, int pos)
 {
     if (isEmpty(list) || pos >= list->size)
@@ -176,7 +167,7 @@ Node *getNodeByPos(LinkedList *list, int pos)
     return aux;
 }
 
-void *getPos(LinkedList *list, int pos)
+void* getPos(LinkedList *list, int pos)
 {
     Node *aux = getNodeByPos(list, pos);
     if (aux == NULL)

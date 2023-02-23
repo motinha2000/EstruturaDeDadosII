@@ -5,16 +5,12 @@
 
 int main()
 {   
-    int aux = 123;
-    // INICIALIZA A FUNÇÃO DE LOGS
-    log_set_level(LOG_TRACE);
+    log_set_level(LOG_TRACE); // INICIALIZA A FUNÇÃO DE LOGS
 
     // Criação da lista ligada
     LinkedList lista;
 
     init(&lista);
-    isEmpty(&lista);
-    enqueue(&lista, &aux);
 
     return EXIT_SUCCESS;
 }
