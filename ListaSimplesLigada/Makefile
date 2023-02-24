@@ -15,4 +15,14 @@ listasimples:
 	./linkedlist
 
 limpatela:
+	@echo
+	@echo ==========================
+	@echo APAGANDO TODOS OS PROGRAMAS
+	@echo ==========================
+	@echo Removendo o programa ponteiro
+	rm -f ponteiro
+	@echo Removendo o programa ponteiro duplo
+	rm -f ponteiro_duplo
+	@echo Removendo o programa linkedlist
+	rm -f linkedlist
 	clear
