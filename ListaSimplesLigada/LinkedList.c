@@ -16,38 +16,57 @@ void init(LinkedList *list)
 
 int enqueue(LinkedList *list, void *data)
 {
-    log_info("Adicionando elemento a lista");
-    log_trace("ENQUEUE ->");
-
-    Node *newNode = (Node *)malloc(sizeof(Node));
-    if (newNode == NULL) // caso não há espaço suficiente na RAM ele retorna valor negativo
-        return -1;
-    newNode->data = data;
-    newNode->next = NULL;
-    if (isEmpty(list))         // se a lista estiver vazia
-        list->first = newNode; // novo nó e primeiro
-    else
-    {
-        Node *aux = list->first;  // aux aponta para o primeiro
-        while (aux->next != NULL) // enquanto não for o último nó
-            aux = aux->next;      // aux avança para o nó seguinte
-        aux->next = newNode;      // último nó aponta para o novo nó
-    }
-    list->size++;
-    return 1;
-    log_trace("ENQUEUE <-");
+    log_info("Adicionando no final da fila");
+	log_trace("ENQUEUE ->");
+	Node *no = (Node*)malloc(sizeof(Node));
+	if (no == NULL) {
+		log_debug("no: %p", no);
+		log_error("Memória insuficiente para a operação");
+		return 0;
+	} else {
+		no->data = data;
+		no->next = NULL;
+	}
+	if (isEmpty(list)) {
+		list->first = no;
+	} else {
+		Node *aux = list->first;
+		log_debug("(aux, aux->next): (%p, %p)", aux, aux->next);
+		while (aux->next != NULL) {
+			aux = aux->next;
+			log_debug("(aux, aux->next): (%p, %p)", aux, aux->next);
+		}
+		aux->next = no;
+		log_debug("(aux, aux->next): (%p, %p)", aux, aux->next);		
+	}
+	list->size += 1;
+	log_info("Dado inserido com sucesso!");
+	log_debug("no(data,next): %p(%p,%p)", no, no->data, no->next);
+	log_trace("ENQUEUE <-");
+	
+	return 1;	
 }
 
 void *dequeue(LinkedList *list)
 {
-    if (isEmpty(list))
-        return NULL;
-    Node *trash = list->first;       // variável que guarda o endereço do nó que será removido
-    list->first = list->first->next; // primeiro elemento passa a ser o segundo da lista
-    void *data = trash->data;        // dado do nó removido
-    free(trash);
-    list->size--;
-    return data;
+    log_info("Removendo o primeiro dado da fila");
+	log_trace("DEQUEUE ->");
+	if (isEmpty(list)) {
+		log_warn("Não há elementos na fila para serem removidos");
+		return NULL;
+	} else {
+		log_debug("list->first: %p", list->first);
+		Node *aux = list->first;
+		void *data = aux->data;
+		list->first = list->first->next;
+		list->size -= 1;
+		free(aux);
+		log_info("Dado removido com sucesso!");
+		log_debug("Nó removido: %p", aux);		
+		log_debug("data returned: %p", data);
+		log_trace("DEQUEUE <-");
+		return data;
+	}
 }
 
 void *first(LinkedList *list)

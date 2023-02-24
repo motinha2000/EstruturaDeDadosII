@@ -14,8 +14,22 @@ int main()
     init(&lista); // INICIA A LISTA COM PONTEIRO null E SIZE 0
 
     int *aux = (int *)malloc(sizeof(int));
-    *aux = 1;
+    *aux = 777;
     enqueue(&lista, aux);
+
+    char *auxS = (char *)malloc(sizeof(char));
+    *auxS = 'C';
+    enqueue(&lista, auxS);
+
+    int *numero = malloc(sizeof(int));
+    numero = (int*)dequeue(&lista);
+    printf("%d removido\n", *numero);
+
+    char *caracter = malloc(sizeof(char));
+    caracter = (char*)dequeue(&lista);
+    printf("%c removido\n", *caracter);
+
+
     
 
     return EXIT_SUCCESS;
