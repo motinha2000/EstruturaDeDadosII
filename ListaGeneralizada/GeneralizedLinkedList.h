@@ -10,7 +10,7 @@ typedef struct Node
         int atom;
         struct Node *list;
     } atomList;
-    struct Node *next;
+    struct Node *tail;
 } Node;
 
 int addAtom(Node **list, int atom);

@@ -3,7 +3,7 @@
 
 int main()
 {
-    Node *listageneralizada;
+    Node *listageneralizada=NULL;
 
     addAtom(&listageneralizada,7);
     showGeneralizedList(listageneralizada);
