@@ -2,6 +2,9 @@
 #define DataStructure_GeneralizedLinkedList_h
 #include <stdbool.h>
 
+#include <stdlib.h>
+#include <stdio.h>
+
 typedef struct Node
 {
     int type; // 0 atomo e 1 lista

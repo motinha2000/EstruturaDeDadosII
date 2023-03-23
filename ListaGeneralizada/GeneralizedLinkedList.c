@@ -2,29 +2,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int addAtom(Node **list, int atom)
+int addAtom(Node **list, int data)
 {
     Node *no = (Node *)malloc(sizeof(Node));
     if (no == NULL)
-        printf("Memoria insuficiente para a operacao!");
+        return -1;
     no->type = 0;
-    no->atomList.atom = atom;
+    no->atomList.atom = data;
     no->tail = NULL;
     if (*list == NULL)
         *list = no;
     else
     {
-        Node *aux;
-        for (aux = *list; aux->tail != NULL; aux = aux->tail);
+        Node *aux = NULL;
+        for (aux = *list; aux->tail != NULL; aux = aux->tail)
+            ;
         aux->tail = no;
     }
 }
 
 void showGeneralizedList(Node *list)
-{
-    Node *aux;
-    for (aux; aux->tail != NULL; aux = aux->tail)
+{   printf("( ");
+    Node *aux = NULL;
+    for (aux = list; aux != NULL; aux = aux->tail)
     {
-        printf("\n%d", aux->atomList.atom);
+        if (aux->type == 0)
+        {
+            printf("%d ", aux->atomList.atom);
+        }
+        else
+        {
+            showGeneralizedList(aux->atomList.list);
+        }
     }
+    printf(")");
 }
