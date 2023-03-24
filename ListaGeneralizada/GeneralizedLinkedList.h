@@ -13,7 +13,7 @@ typedef struct Node
     struct Node *tail;
 } Node;
 
-int addAtom(Node **list, int atom);
+int addAtom(Node **list, int data);
 int addList(Node **list, Node **subList);
 Node *head(Node *list);
 Node *tail(Node *list);
