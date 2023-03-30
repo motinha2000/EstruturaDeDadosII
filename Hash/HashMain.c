@@ -21,15 +21,20 @@ void printCliente(void *data) {
 
 int main() {
     HashStruct hashes;
-    initHash(&hashes);
-    printf("%d\n",hash("joao.preti@cba.ifmt.edu.br"));   
+    initHash(&hashes);  
+
     Cliente *c = (Cliente *)malloc(sizeof(Cliente));
-    strcpy(c->nome,"Joao Paulo") ;
-    strcpy(c->email,"joao.preti@cba.ifmt.edu.br");
+    strcpy(c->nome,"Gabriel Mota Santos") ;
+    strcpy(c->email,"gamotasantos2000@gmail.com");
     printf("%d\n",hash(c->email));
+    
+    Cliente *a = (Cliente *)malloc(sizeof(Cliente));
+    strcpy(c->nome,"Gabriel Mota Santos") ;
+    strcpy(c->email,"gamotasantos2000@gmail.com");
     put(&hashes, c->email, c, comparaChaves);
-    printf("%d\n",hashes.hashes[hash("joao.preti@cba.ifmt.edu.br")].size);
-    printf("%d\n",hashes.size);
+
+    printf("%d\n",hashes.hashes[hash("gamotasantos2000@gmail.com")].size);
+    /*printf("%d\n",hashes.size);
     printf("%d\n",containsKey(&hashes, "joao.preti@cba.ifmt.edu.br", comparaChaves));
     Cliente *cliente = (Cliente*)get(&hashes, "joao.preti@cba.ifmt.edu.br", comparaChaves);
     printf("%s\n",cliente->nome);
@@ -45,6 +50,7 @@ int main() {
     strcpy(c->nome,"Carla") ;
     strcpy(c->email,"carla@gmail.com.br");
     put(&hashes, c->email, c, comparaChaves);
-    showHashStruct(&hashes, printCliente);
+    showHashStruct(&hashes, printCliente); */
+
     return 0;
 }

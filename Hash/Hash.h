@@ -1,6 +1,6 @@
 #ifndef EstruturaDeDados_Hash_h
 #define EstruturaDeDados_Hash_h
-#include "/git/EstruturaDeDadosII/ListaDuplamenteLigada/ListaDup.h"
+#include "ListaDup.h"
 #define MAX 10
 
 typedef struct HashStruct {
