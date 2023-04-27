@@ -27,6 +27,8 @@ int main() {
     int i;
 
     FILE *arq;
+    FILE *imagem;
+
     arq = fopen("ListaDePalavrasPT.txt", "rt");
     if(arq==NULL)
         printf("Problemas na CRIACAO do arquivo\n");
