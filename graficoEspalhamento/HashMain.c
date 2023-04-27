@@ -46,7 +46,7 @@ int main(void)
             int r = rand() % 256;  // componente de cor vermelha
             int g = rand() % 256;  // componente de cor verde
             int b = rand() % 256;  // componente de cor azul
-            fprintf(fp,"%d %d %d ", r, g, b);
+            fprintf(fp,"%d %d %d ", r, g, b);//não esquecer do espaço!
         }
         fprintf(fp, "\n");
     }
