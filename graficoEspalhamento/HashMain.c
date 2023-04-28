@@ -1,19 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
 #include "Hash.h"
+
+#define MAX_PALAVRAS 29859
+#define MAX_TAMANHO_PALAVRA 100
 
 typedef struct Cliente
 {
-    char nome[50];
+    char nome[MAX_TAMANHO_PALAVRA];
 } Cliente;
 
 bool comparaChaves(void *key, void *data)
 {
     char *chave = (char *)key;
-    Cliente *c = (Cliente *)data;
-    return (strcmp(chave, c->nome) == 0) ? true : false;
+    char *c = (char *)data;
+    return (strcmp(chave, c) == 0) ? true : false;
 }
 
 void printCliente(void *data)
@@ -22,55 +24,41 @@ void printCliente(void *data)
     printf("{%s} - ", cliente->nome);
 }
 
-int main(void)
+int main()
 {
     HashStruct hashes;
     initHash(&hashes);
 
-    FILE *arq = fopen("ListaDePalavrasPT.txt", "r");
-    FILE *fp = fopen("Grafico.ppm", "w");
+    int contador_palavras = 0;
+    char buffer[MAX_TAMANHO_PALAVRA];
+    FILE *arquivo = fopen("ListaDePalavrasPT.txt", "r");
 
-    char temp[50];
-    int count = 0; 
-    while (fgets(temp, 50, arq) != NULL) // Faz a contagem das palavras no arquivo
+    if (arquivo == NULL)
     {
-        count++;
+        printf("Erro ao abrir o arquivo.\n");
+        exit(1);
     }
-    printf("\n%d palavras.", count);
 
-    char *palavras[count];
-    int i = 0;
-    char *buffer = (char *) malloc(51 * sizeof(char));
-    while (fscanf(arq, "%s", buffer) == EOF && i < count+1);
+    // Lê palavras linha por linha até o fim do arquivo
+    while (fscanf(arquivo, "%s", buffer) != EOF && contador_palavras < MAX_PALAVRAS)
     {   
-        char *palavra = (char *) malloc(51 * sizeof(char));
-        fscanf(arq, "%s", palavra);
-        palavras[i] = (char*)malloc(strlen(palavra) + 1);
-        put(&hashes, palavras[i], palavras[i], comparaChaves);
-        i++;
+        char* palavra = malloc(MAX_TAMANHO_PALAVRA*sizeof(char));
+        strcpy(palavra, buffer);
+        //printf("%p\n",&palavra);
+        put(&hashes, palavra, palavra, comparaChaves);
+        contador_palavras++;
     }
-    fclose(arq);
+
+    // Fecha o arquivo
+    fclose(arquivo);
+
+    // Imprime as palavras lidas
+    /* for (int i = 0; i < contador_palavras; i++)
+    {
+        printf("%s\n", palavras[i]);
+    } */
 
     showHashStruct(&hashes, printCliente);
 
     return 0;
 }
-
-/* //Escreve o cabeçalho do arquivo
-    fprintf(fp, "P3\n%d %d\n255\n", WIDTH, HEIGHT);
-    //Preenche a imagem com pixels aleatórios
-        srand(time(NULL)); // inicializa a semente do gerador de números aleatórios
-    for (int i = 0; i < HEIGHT; i++)
-    {
-        for (int j = 0; j < WIDTH; j++)
-        {
-            int r = rand() % 256;              // componente de cor vermelha
-            int g = rand() % 256;              // componente de cor verde
-            int b = 0;                         // componente de cor azul
-            fprintf(fp, "%d %d %d ", r, g, b); // não esquecer do espaço!
-        }
-        fprintf(fp, "\n");
-    }*/
-// fclose(fp);
-
-// contagem das linhas do arquivo

@@ -20,3 +20,5 @@ void* removeKey(HashStruct *hashStruct, char *key, compare equal);
 void showHashStruct(HashStruct *hashStruct, printNode print);
 
 #endif
+
+//Usar o maior hashes[MAX] para descobrir a minha faixa de cor!
