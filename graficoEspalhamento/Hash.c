@@ -77,7 +77,7 @@ void *removeKey(HashStruct *hashStruct, char *key, compare equal)
 
 void showHashStruct(HashStruct *hashStruct, printNode print)
 {
-    printf("There are %d elements in the Hash\n\n", hashStruct->size);
+    printf("\nThere are %d elements in the Hash\n\n", hashStruct->size);
     for (int i = 0; i < MAX; i++)
     {
         printf("Hash %d has %d elements: ", i, hashStruct->hashes[i].size);

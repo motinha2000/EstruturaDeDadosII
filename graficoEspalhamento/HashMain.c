@@ -26,42 +26,51 @@ int main(void)
 {
     HashStruct hashes;
     initHash(&hashes);
-    Cliente *c = (Cliente *)malloc(sizeof(Cliente));
-    char Linha[100];
-    char palavras[100];
-    char *result;
-    char *dic;
-    FILE *arq = fopen("ListaDePalavrasPT.txt", "rt");
+
+    FILE *arq = fopen("ListaDePalavrasPT.txt", "r");
     FILE *fp = fopen("Grafico.ppm", "w");
 
-    //Escreve o cabeçalho do arquivo
-    //fprintf(fp, "P3\n%d %d\n255\n", WIDTH, HEIGHT);
+    char temp[50];
+    int count = 0; 
+    while (fgets(temp, 50, arq) != NULL) // Faz a contagem das palavras no arquivo
+    {
+        count++;
+    }
+    printf("\n%d palavras.", count);
 
-    //Preenche a imagem com pixels aleatórios
-    /* srand(time(NULL));//inicializa a semente do gerador de números aleatórios
-    for (int i = 0; i < HEIGHT; i++){
-        for (int j = 0; j < WIDTH; j++){
-            int r = rand()%256;  // componente de cor vermelha
-            int g = rand()%256;  // componente de cor verde
-            int b = 0;  // componente de cor azul
-            fprintf(fp,"%d %d %d ", r, g, b);//não esquecer do espaço!
-        }
-        fprintf(fp, "\n");
-    } */
-
-    //fclose(fp);
-
-    int i=0; while(!feof(arq))
+    char *palavras[count];
+    int i = 0;
+    char *buffer = (char *) malloc(51 * sizeof(char));
+    while (fscanf(arq, "%s", buffer) == EOF && i < count+1);
     {   
-        result = fgets(Linha,100,arq);
-        strcpy(dic,result);
-        //printf("%s", result);
-        put(&hashes,dic,c,comparaChaves);
+        char *palavra = (char *) malloc(51 * sizeof(char));
+        fscanf(arq, "%s", palavra);
+        palavras[i] = (char*)malloc(strlen(palavra) + 1);
+        put(&hashes, palavras[i], palavras[i], comparaChaves);
         i++;
     }
-    fclose(arq); 
+    fclose(arq);
 
     showHashStruct(&hashes, printCliente);
 
     return 0;
 }
+
+/* //Escreve o cabeçalho do arquivo
+    fprintf(fp, "P3\n%d %d\n255\n", WIDTH, HEIGHT);
+    //Preenche a imagem com pixels aleatórios
+        srand(time(NULL)); // inicializa a semente do gerador de números aleatórios
+    for (int i = 0; i < HEIGHT; i++)
+    {
+        for (int j = 0; j < WIDTH; j++)
+        {
+            int r = rand() % 256;              // componente de cor vermelha
+            int g = rand() % 256;              // componente de cor verde
+            int b = 0;                         // componente de cor azul
+            fprintf(fp, "%d %d %d ", r, g, b); // não esquecer do espaço!
+        }
+        fprintf(fp, "\n");
+    }*/
+// fclose(fp);
+
+// contagem das linhas do arquivo
