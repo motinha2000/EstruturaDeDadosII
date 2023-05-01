@@ -3,9 +3,6 @@
 #include <string.h>
 #include "Hash.h"
 
-#define MAX_PALAVRAS 29859
-#define MAX_TAMANHO_PALAVRA 100
-
 typedef struct Cliente
 {
     char nome[MAX_TAMANHO_PALAVRA];
@@ -41,10 +38,10 @@ int main()
 
     // Lê palavras linha por linha até o fim do arquivo
     while (fscanf(arquivo, "%s", buffer) != EOF && contador_palavras < MAX_PALAVRAS)
-    {   
-        char* palavra = malloc(MAX_TAMANHO_PALAVRA*sizeof(char));
+    {
+        char *palavra = malloc(MAX_TAMANHO_PALAVRA * sizeof(char));
         strcpy(palavra, buffer);
-        //printf("%p\n",&palavra);
+        // printf("%p\n",&palavra);
         put(&hashes, palavra, palavra, comparaChaves);
         contador_palavras++;
     }
@@ -58,7 +55,8 @@ int main()
         printf("%s\n", palavras[i]);
     } */
 
-    showHashStruct(&hashes, printCliente);
+    hashUm(&hashes);
+    // showHashStruct(&hashes, printCliente);
 
     return 0;
 }

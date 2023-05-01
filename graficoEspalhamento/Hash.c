@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "Hash.h"
 
 void initHash(HashStruct *hashStruct)
@@ -43,7 +44,6 @@ int put(HashStruct *hashStruct, char *key, void *data, compare equal)
     return 0;
 }
 
-
 bool containsKey(HashStruct *hashStruct, char *key, compare equal)
 {
     // calcula a posição
@@ -84,4 +84,42 @@ void showHashStruct(HashStruct *hashStruct, printNode print)
         show(&hashStruct->hashes[i], print);
         printf("\n");
     }
+}
+
+void hashUm(HashStruct *hashStruct)
+{
+    FILE *imagem = fopen("Grafico.ppm", "w");
+    FILE *arquivo = fopen("ListaDePalavrasPT.txt", "r");
+
+    int contador_palavras = 0;
+    char buffer[MAX_TAMANHO_PALAVRA];
+    int maior, resto;
+    resto = 0;
+    maior = hashStruct->hashes[0].size;
+
+    fprintf(imagem, "P3\n%d %d\n255\n", WIDTH, HEIGHT);
+    srand(time(NULL)); // inicializa a semente do gerador de números aleatórios
+
+    for (int i = 0; i < MAX; i++)
+    {
+        if (maior < hashStruct->hashes[i].size)
+            maior = hashStruct->hashes[i].size;
+    }
+    resto = 256 % maior;
+    //printf("%d\n", resto);
+    //printf("%d", maior);
+
+    int c = 0;
+    for (int i = 0; i < HEIGHT; i++)
+    {
+        for (int j = 0; j < WIDTH; j++)
+        {
+            int r = 0;                                            // componente de cor vermelha
+            int g = (hashStruct->hashes[i*j].size*256)/maior; // componente de cor verde
+            int b = 0;                                            // componente de cor azul
+            fprintf(imagem, "%d %d %d ", r, g, b);                // não esquecer do espaço!
+        }
+        fprintf(imagem, "\n");
+    }
+    fclose(imagem);
 }
