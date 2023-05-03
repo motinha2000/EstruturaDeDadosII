@@ -123,3 +123,15 @@ void hashUm(HashStruct *hashStruct)
     }
     fclose(imagem);
 }
+
+int hashDois(char *key)
+{
+    int sum = 0;
+    // percorremos todos os caracteres da string passada
+    for (int i = 0; key[i] != 0; i++)
+    {
+        // acumulamos os códigos ascii de cada letra com um peso
+        sum += key[i] * (i + 1);
+    }
+    return sum % MAX; // retorna o resto da divisão
+}

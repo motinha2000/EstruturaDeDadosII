@@ -1,9 +1,9 @@
 #ifndef EstruturaDeDados_Hash_h
 #define EstruturaDeDados_Hash_h
 #include "ListaDup.h"
-#define MAX 4096
-#define WIDTH 64
-#define HEIGHT 64
+#define MAX 3844
+#define WIDTH 62
+#define HEIGHT 62
 #define MAX_PALAVRAS 29859
 #define MAX_TAMANHO_PALAVRA 100
 
@@ -21,6 +21,7 @@ void* get(HashStruct *hashStruct, char *key, compare equal);
 void* removeKey(HashStruct *hashStruct, char *key, compare equal);
 void showHashStruct(HashStruct *hashStruct, printNode print);
 void hashUm(HashStruct *hashStruct);
+int hashDois(char *key);
 
 #endif
 
