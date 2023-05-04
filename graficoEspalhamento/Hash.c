@@ -22,11 +22,13 @@ bool isHashEmpty(HashStruct *hashStruct)
 int hash(char *key)
 {
     int sum = 0;
+    srand(time(NULL));
     // percorremos todos os caracteres da string passada
     for (int i = 0; key[i] != 0; i++)
-    {
+    {   
         // acumulamos os códigos ascii de cada letra com um peso
-        sum += key[i] * (i + 1);
+        //sum += key[i] * (i + 1);
+        sum += key[i] * (i + 1)*(rand()%1024);
     }
     return sum % MAX; // retorna o resto da divisão
 }
@@ -106,18 +108,18 @@ void hashUm(HashStruct *hashStruct)
             maior = hashStruct->hashes[i].size;
     }
     resto = 256 % maior;
-    //printf("%d\n", resto);
-    //printf("%d", maior);
+    // printf("%d\n", resto);
+    // printf("%d", maior);
 
     int c = 0;
     for (int i = 0; i < HEIGHT; i++)
     {
         for (int j = 0; j < WIDTH; j++)
         {
-            int r = 0;                                            // componente de cor vermelha
-            int g = (hashStruct->hashes[i*j].size*256)/maior; // componente de cor verde
-            int b = 0;                                            // componente de cor azul
-            fprintf(imagem, "%d %d %d ", r, g, b);                // não esquecer do espaço!
+            int r = 0;                                              // componente de cor vermelha
+            int g = (hashStruct->hashes[i * j].size * 256) / maior; // componente de cor verde
+            int b = 0;                                              // componente de cor azul
+            fprintf(imagem, "%d %d %d ", r, g, b);                  // não esquecer do espaço!
         }
         fprintf(imagem, "\n");
     }
@@ -131,7 +133,7 @@ int hashDois(char *key)
     for (int i = 0; key[i] != 0; i++)
     {
         // acumulamos os códigos ascii de cada letra com um peso
-        sum += key[i] * (i + 1);
+        sum += key[i] * (i + 1) * rand() % 4096;
     }
     return sum % MAX; // retorna o resto da divisão
 }
