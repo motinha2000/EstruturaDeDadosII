@@ -21,7 +21,6 @@ void* get(HashStruct *hashStruct, char *key, compare equal);
 void* removeKey(HashStruct *hashStruct, char *key, compare equal);
 void showHashStruct(HashStruct *hashStruct, printNode print);
 void hashUm(HashStruct *hashStruct);
-int hashDois(char *key);
 
 #endif
 
