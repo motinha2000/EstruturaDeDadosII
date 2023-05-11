@@ -27,5 +27,8 @@ Block *getLatestBlock(Blockchain *blockchain);
 bool isValidNewBlock(Block *newBlock, Block *previousBlock);
 bool isBlockchainValid(Blockchain *blockchain);
 int addBlock(Blockchain *blockchain, Block *newBlock);//adiciona o bloco na lista
+static void hash_to_string(char string[65], const uint8_t hash[32]);
+char *calculateBlockHash(Block *block);
+
 
 #endif
