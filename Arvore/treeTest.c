@@ -14,5 +14,5 @@ int compara(void *data1, void *data2)
 void main(void)
 {
     TreeNode raiz;
-    add(&raiz, 0, compara)
+    add(&raiz, 0, compara);
 }
