@@ -8,8 +8,10 @@
 
 typedef int (*TreeComparator)(void *element1, void *element2)
 {
-    /*
+    
+    /* char *c = (char *)data; função que converte de *void para o char(neste caso)  
     - O usuário da biblioteca deve fornecer uma função para impressão dos dados do TreeNode
+    char *c = (char *)data;
     */
 }
 
