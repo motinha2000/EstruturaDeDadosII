@@ -12,11 +12,14 @@ typedef struct TreeNode
 
 typedef int (*TreeComparator)(void *element1, void *element2);
 typedef void (*printNode)(void *);
+
 int add(TreeNode **root, void *element, TreeComparator f);
 int find(TreeNode *root, void *key, TreeComparator f, void **element);
 void in_order(TreeNode *root, printNode print);
 void pre_order(TreeNode *root, printNode print);
 void post_order(TreeNode *root, printNode print);
+TreeNode *greaterRight(TreeNode **no);
+TreeNode *smallerLeft(TreeNode **no);
 int removeTreeNode(TreeNode **root, void *key, TreeComparator f);
 int height(TreeNode *root);
 void destroy(TreeNode **root);
