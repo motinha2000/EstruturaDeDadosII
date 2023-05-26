@@ -1,39 +1,48 @@
 #include "compress.h"
 #include <stdio.h>
 #include <stdlib.h>
+#define MAX 11
 
 int main(int argc, char *argv[])
 {
-    //char c;
-    int i;
+    int i, cont;
+    cont = i = 0;
     char ch;
-    i=0;
-    Simbolo h[7];
 
     FILE *arquivo = fopen(argv[1], "r");
 
-    if (arquivo == NULL) printf("\nErro ao abrir o arquivo.\n");
+    if (arquivo == NULL)
+        printf("\nErro ao abrir o arquivo.\n");
 
-    while ((ch = fgetc(arquivo)) != EOF)//PERCORRER O ARQUIVO E EXIBIR OS CARACTERES ENCONTRADOS
-    {
-        if (ch != 32 && ch != 10)//IGNORAR ESPAÇOS E QUEBRAS DE LINHA
-            printf("%c", ch);
-    }
+    while ((ch = fgetc(arquivo)) != EOF) // PERCORRER O ARQUIVO E RESPEITAR O TAMANHO DO VETOR DE STRUCT
+        cont++;
+    int *v = malloc(cont * sizeof(int));
+    printf("\nChar's: %d.", cont);
 
-    fseek(arquivo,0,SEEK_SET);//MUDAR O PONTEIRO PRO COMEÇO DO ARQUIVO NOVAMENTE
-    
-    while ((ch = fgetc(arquivo)) != EOF && i<7)//PERCORRER O ARQUIVO E RESPEITAR O TAMANHO DO VETOR DE STRUCT
-    {
-        if (ch != 32 && ch != 10){//IGNORAR ESPAÇOS E QUEBRAS DE LINHA
-            h[i].representacao=ch;//ATRIBUIR VALOR ENCONTRADO AO STRUCT
-            i++;//AVANÇAR POSIÇÃO NO STRUCT
-        }
-    }
-
+    fseek(arquivo, 0, SEEK_SET); // MUDAR O PONTEIRO PRO COMEÇO DO ARQUIVO NOVAMENTE
     printf("\n");
+    while ((ch = fgetc(arquivo)) != EOF && i < cont) // PERCORRER O ARQUIVO E RESPEITAR O TAMANHO DO VETOR DE STRUCT
+    {
+        v[i] = (int)ch;
+        printf("%c", (char)v[i]);
+        i++;
+    }
+    //SIMBOLO *h = malloc(cont*sizeof(SIMBOLO));
+    SIMBOLO *h = malloc(cont*sizeof(SIMBOLO));
+    for (int j = 0; j < cont; j++)
+        h[j].frequencia=0;
+    printf("\n");
+    fseek(arquivo, 0, SEEK_SET); // MUDAR O PONTEIRO PRO COMEÇO DO ARQUIVO NOVAMENTE
+    for (int j = 0; j < cont; j++)
+    {   
+        if(h[j].representacao==(char)v[j])
+            h[j].frequencia++;
+        else 
+            h[j].representacao = (char)v[j]; // ATRIBUIR VALOR ENCONTRADO AO STRUCT
+    }   
 
-    for(int j=0;j<7;j++)//EXIBIR OS CARACTERES PELO STRUCT
-        printf("%c",h[j].representacao);
+    for (int j = 0; j < cont; j++)
+        printf("%d", h[j].frequencia);
 
     fclose(arquivo);
 }
