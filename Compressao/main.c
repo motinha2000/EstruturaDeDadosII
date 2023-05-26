@@ -19,8 +19,10 @@ int main(int argc, char *argv[])
         if (ch != 32 && ch != 10)//IGNORAR ESPAÇOS E QUEBRAS DE LINHA
             printf("%c", ch);
     }
+
     fseek(arquivo,0,SEEK_SET);//MUDAR O PONTEIRO PRO COMEÇO DO ARQUIVO NOVAMENTE
-    while ((ch = fgetc(arquivo)) != EOF && i<7)//PERCORRER O ARQUIVO E RESPEITAR O LIMITE DO VETOR DE STRUCT
+    
+    while ((ch = fgetc(arquivo)) != EOF && i<7)//PERCORRER O ARQUIVO E RESPEITAR O TAMANHO DO VETOR DE STRUCT
     {
         if (ch != 32 && ch != 10){//IGNORAR ESPAÇOS E QUEBRAS DE LINHA
             h[i].representacao=ch;//ATRIBUIR VALOR ENCONTRADO AO STRUCT
