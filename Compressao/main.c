@@ -3,16 +3,35 @@
 #include <stdlib.h>
 
 int main(int argc, char *argv[])
-{   
-    char c;
+{
+    //char c;
+    int i;
+    char ch;
+    i=0;
+    Simbolo h[7];
+
     FILE *arquivo = fopen(argv[1], "r");
-    printf("%s", argv[1]);
 
     if (arquivo == NULL) printf("\nErro ao abrir o arquivo.\n");
-    else printf("\nTudo ok!\n");
 
-    while( (c=fgetc(arquivo)) !=EOF)
-        printf("%c", c);
+    while ((ch = fgetc(arquivo)) != EOF)
+    {
+        if (ch != 32 && ch != 10)
+            printf("%c", ch);
+    }
+    fseek(arquivo,0,SEEK_SET);
+    while ((ch = fgetc(arquivo)) != EOF && i<7)
+    {
+        if (ch != 32 && ch != 10){
+            h[i].representacao=ch;
+            i++;
+        }
+    }
+
+    printf("\n");
+
+    for(int j=0;j<7;j++)
+        printf("%c",h[j].representacao);
 
     fclose(arquivo);
 }
