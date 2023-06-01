@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#define MAX 11
+#include <string.h>
 
 int main(int argc, char *argv[])
 {
@@ -21,24 +21,26 @@ int main(int argc, char *argv[])
     int *v = malloc(cont * sizeof(int));
     printf("\nChars: %d.", cont);
 
-    fseek(arquivo, 0, SEEK_SET);
+    fseek(arquivo, 0, SEEK_SET);//
     printf("\n");
+
     while ((ch = fgetc(arquivo)) != EOF && i < cont) // GUARDAR CARACTER COMO INT
     {
         v[i] = (int)ch;
         //printf("%c", (char)v[i]);
         i++;
     }
-    SIMBOLO *h = malloc(cont * sizeof(SIMBOLO));
+    Simbolo *h = malloc(cont * sizeof(Simbolo));
     for (int j = 0; j < cont; j++)
         h[j].frequencia = 0;
 
     for (int j = 0; j < cont; j++) // ATRIBUIR AO STRUCT
     {
-        h[j].representacao = (char)v[j];
+        strcpy(h[j].representacao,(char)v[j]);
         for (int t = 0; t < cont; t++) // CALCULA FREQUENCIA
-        {
-            if (h[j].representacao == (char)v[t])
+        {   
+                strcpy(h[j].representacao,(char)v[j]);
+                if (strcmp(h[j].representacao,(char)v[t])==0)
                 h[j].frequencia++;
         }
     }
@@ -52,26 +54,6 @@ int main(int argc, char *argv[])
         }
     }
 
-    for (int j = 0; j < cont; j++) // EXIBIÇÃO STRUCT NAO ANULADO
-    {
-        if (h[j].frequencia != 0)
-        {
-            if (h[j].representacao == (char)32)
-            {
-                printf("ESPAÇO(S) - ");
-                printf("%d\n", h[j].frequencia);
-            }
-            else if (h[j].representacao == (char)10)
-            {
-                printf("QUEBRA(S) DE LINHA - ");
-                printf("%d\n", h[j].frequencia);
-            }
-            else
-            {
-                printf("%c - ", h[j].representacao);
-                printf("%d\n", h[j].frequencia);
-            }
-        }
-    }
+    exibe(cont,v,h);
     fclose(arquivo);
 }

@@ -8,8 +8,11 @@ MENOR FREQUÊNCIA -> MAIOR FREQUÊNCIA.
 #define MAX_TAMANHO_PALAVRAS 100
 #define CARACTERES 256
 
-typedef struct simbolo{   
-    char representacao;
+typedef struct Simbolo{   
+    char *representacao;
     unsigned int frequencia;
-    struct Simbolo *endereço;
-}SIMBOLO;
+    struct Simbolo *esquerda;
+    struct Simbolo *direita;
+}Simbolo;
+
+void exibe(int cont, int *v,Simbolo *h);
