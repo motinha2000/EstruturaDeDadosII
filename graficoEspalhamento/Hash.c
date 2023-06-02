@@ -27,8 +27,8 @@ int hash(char *key)
     for (int i = 0; key[i] != 0; i++)
     {   
         // acumulamos os códigos ascii de cada letra com um peso
-        sum += key[i] * (i + 1);  
-        //sum += key[i] * (i + 1)*(rand()%1024); 
+        //sum += key[i] * (i + 1);  
+        sum += key[i] * (i + 1)*(rand()%1024); 
         // acumulamos os códigos ascii com a função rand, 
         //que melhora a exclusividade do hash, melhorando assim a dispersão
     }
