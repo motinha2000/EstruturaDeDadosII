@@ -15,4 +15,5 @@ typedef struct Simbolo{
     struct Simbolo *direita;
 }Simbolo;
 
-void exibe(int cont, int *v,Simbolo *h);
+void exibe(int tam, char *v,Simbolo *h);
+int elementosUnicos(int cont, char *v);
