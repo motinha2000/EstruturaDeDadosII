@@ -1,9 +1,9 @@
 #ifndef EstruturaDeDados_Hash_h
 #define EstruturaDeDados_Hash_h
 #include "ListaDup.h"
-#define MAX 4096
-#define WIDTH 64
-#define HEIGHT 64
+#define MAX 1024
+#define WIDTH 32
+#define HEIGHT 32
 #define MAX_PALAVRAS 29859
 #define MAX_TAMANHO_PALAVRA 100
 
