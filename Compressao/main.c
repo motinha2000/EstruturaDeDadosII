@@ -38,16 +38,24 @@ int main(int argc, char *argv[])
     int prox = 0;
     for (int i = 0; i < cont; i++)
     {
-        char aux = v[i];
         h[prox].representacao[0] = v[i];
-        for (int j = 0; j < cont; j++)
+        printf("\n")
+        for (int p = 0; p < tam; p++) // SIMBOLO UNICO
         {
-            if (h[prox].representacao[0] == v[j])
+            if (h[prox].representacao[0] == h[p].representacao[0])
                 break;
-            else 
+            else
+            {
+                for (int j = 0; j < cont; j++) // CONTAR FREQUENCIA
+                {
+                    if (h[prox].representacao[0] == v[j])
+                        h[prox].frequencia++;
+                }
                 prox++;
+            }
         }
     }
+
     exibe(tam, v, h);
     fclose(arquivo);
 }
