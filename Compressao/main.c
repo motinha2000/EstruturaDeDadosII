@@ -32,28 +32,22 @@ int main(int argc, char *argv[])
 
     int tam = elementosUnicos(cont, v);
     printf("\nElementos %d.\n", elementosUnicos(cont, v));
-    char *vetorUnico = malloc(tam * sizeof(char));
-
-    int prox = 0;
-    for (int i = 0; i < cont; i++)
-    {   
-        for(int j=0;j<cont;j++)
-        {
-            if(v[i]!=v[i+1])
-        }
-    }
 
     Simbolo *h = malloc(tam * sizeof(Simbolo));
-    for (int i = 0; i < tam; i++)
+    iniciarStruct(tam, h);
+    int prox = 0;
+    for (int i = 0; i < cont; i++)
     {
-        h[i].representacao = malloc(2 * sizeof(char));
-        h[i].representacao[0] = vetorUnico[i];
-        h[i].representacao[1] = '\0';
-        h[i].frequencia = 0;
-        h[i].direita = NULL;
-        h[i].esquerda = NULL;
+        char aux = v[i];
+        h[prox].representacao[0] = v[i];
+        for (int j = 0; j < cont; j++)
+        {
+            if (h[prox].representacao[0] == v[j])
+                break;
+            else 
+                prox++;
+        }
     }
-
     exibe(tam, v, h);
     fclose(arquivo);
 }

@@ -1,5 +1,6 @@
 #include "compress.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 void exibe(int tam, char *v,Simbolo *h)
 {
@@ -39,4 +40,17 @@ int elementosUnicos(int cont, char *v)
         }
     }
     return cont - e;
+}
+
+void iniciarStruct(int tam, Simbolo *h)
+{
+    for (int i = 0; i < tam; i++)
+    {
+        h[i].representacao = malloc(2 * sizeof(char));
+        h[i].representacao[0] = '\0';
+        h[i].representacao[1] = '\0';
+        h[i].frequencia = 0;
+        h[i].direita = NULL;
+        h[i].esquerda = NULL;
+    }
 }

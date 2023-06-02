@@ -17,3 +17,4 @@ typedef struct Simbolo{
 
 void exibe(int tam, char *v,Simbolo *h);
 int elementosUnicos(int cont, char *v);
+void iniciarStruct(int tam, Simbolo *h);
