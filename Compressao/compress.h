@@ -20,3 +20,4 @@ int elementosUnicos(int cont, char *v);
 void iniciarStruct(int tam, Simbolo *h);
 void folhas(int tam, int cont, char *v, Simbolo *h);
 void ordenar(int tam, Simbolo *h);
+Simbolo *huffman(int tam, Simbolo *h);

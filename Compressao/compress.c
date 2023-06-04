@@ -80,16 +80,29 @@ void folhas(int tam, int cont, char *v, Simbolo *h)
         }
         if (prox == tam)
             break;
-    }   
+    }
 }
 
 void ordenar(int tam, Simbolo *h)
 {
-    for(int i=0;i<tam;i++)
-    {   Simbolo *aux;
-        for(int j=0;j<tam;j++)
+    for (int i = 0; i < tam; i++)
+    {
+        for (int j = i + 1; j < tam; j++)
         {
-
+            if (h[i].frequencia < h[j].frequencia)
+            {
+                Simbolo *aux = malloc(sizeof(Simbolo));
+                *aux = h[i];
+                h[i] = h[j];
+                h[j] = *aux;
+            }
         }
     }
+}
+
+Simbolo *arvore(int tam, Simbolo *h)
+{   
+    int prox=0;
+    
+    return h;
 }
