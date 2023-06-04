@@ -1,8 +1,6 @@
 #include "compress.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
 
 int main(int argc, char *argv[])
 {
@@ -26,36 +24,18 @@ int main(int argc, char *argv[])
     while ((ch = fgetc(arquivo)) != EOF && c < cont) // GUARDAR TODOS CARACTERES
     {
         v[c] = ch;
-        printf("%c", v[c]);
+        // printf("%c", v[c]);
         c++;
     }
 
     int tam = elementosUnicos(cont, v);
-    printf("\nElementos %d.\n", elementosUnicos(cont, v));
+    printf("Elemento(s) %d.\n", tam);
 
     Simbolo *h = malloc(tam * sizeof(Simbolo));
     iniciarStruct(tam, h);
-    int prox = 0;
-    for (int i = 0; i < cont; i++)
-    {
-        h[prox].representacao[0] = v[i];
-        printf("\n")
-        for (int p = 0; p < tam; p++) // SIMBOLO UNICO
-        {
-            if (h[prox].representacao[0] == h[p].representacao[0])
-                break;
-            else
-            {
-                for (int j = 0; j < cont; j++) // CONTAR FREQUENCIA
-                {
-                    if (h[prox].representacao[0] == v[j])
-                        h[prox].frequencia++;
-                }
-                prox++;
-            }
-        }
-    }
-
+    folhas(tam, cont, v, h);
     exibe(tam, v, h);
+    ordenar(tam, h);
+
     fclose(arquivo);
 }
