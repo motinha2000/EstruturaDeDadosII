@@ -34,9 +34,9 @@ int main(int argc, char *argv[])
     Simbolo *h = malloc(tam * sizeof(Simbolo));
     iniciarStruct(tam, h);
     folhas(tam, cont, v, h);
-    exibe(tam, v, h);printf("\n");
     ordenar(tam, h);
-    exibe(tam, v, h);
-    //Simbolo *compress = arvore(tam,h);
+    exibe(tam, v, h);printf("\n");
+    arvore(tam,h);
+    //exibe(tam, v, h);
     fclose(arquivo);
 }

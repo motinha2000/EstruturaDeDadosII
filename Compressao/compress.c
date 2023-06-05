@@ -1,6 +1,7 @@
 #include "compress.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 void exibe(int tam, char *v, Simbolo *h)
 {
@@ -99,10 +100,32 @@ void ordenar(int tam, Simbolo *h)
         }
     }
 }
-
-Simbolo *arvore(int tam, Simbolo *h)
+void arvore(int tam, Simbolo *h)
 {   
-    int prox=0;
+    Simbolo *aux = malloc(sizeof(Simbolo));
+    Simbolo *m1 = malloc(sizeof(Simbolo));
+    Simbolo *m2 = malloc(sizeof(Simbolo));
+    *m1 = h[tam-1];//F-5
+    *m2 = h[tam-2];//E-9
+    if(m1->frequencia>=m2->frequencia)
+    {   
+        char *str = malloc(sizeof(char));
+        aux->representacao=strcat(str,m1->representacao);
+        aux->representacao=strcat(str,m2->representacao);
+        aux->direita=m1;
+        aux->esquerda=m2;
+    }
+    else if(m1->frequencia<=m2->frequencia)
+    {   
+        char *str = malloc(sizeof(char));;
+        aux->representacao=strcat(str,m2->representacao);
+        aux->representacao=strcat(str,m1->representacao);
+        aux->direita=m2;
+        aux->esquerda=m1;
+    }
+    printf("\n%s",aux->esquerda->representacao);
+    printf("\n%s",aux->direita->representacao);
+    printf("\n%s",aux->representacao);
+
     
-    return h;
 }
