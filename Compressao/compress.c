@@ -101,35 +101,56 @@ void ordenar(int tam, Simbolo *h)
     }
 }
 Simbolo *arvore(int tam, Simbolo *h)
-{   
-    Simbolo *aux = malloc(sizeof(Simbolo));
+{
+    /*
     aux->direita = NULL;
     aux->esquerda = NULL;
-    if(tam<0)
-        return aux;
-    Simbolo *m1 = malloc(sizeof(Simbolo));
-    Simbolo *m2 = malloc(sizeof(Simbolo));
-    memcpy(m1, &h[tam - 1], sizeof(Simbolo));
-    memcpy(m2, &h[tam - 2], sizeof(Simbolo));
+    */
 
-    if (m1->frequencia > m2->frequencia && tam >= 0)
+    if (tam == 0)
     {
-        aux->representacao = malloc((strlen(m1->representacao) + strlen(m2->representacao) + 1) * sizeof(char));
-        aux->representacao = strcat(aux->representacao, m1->representacao);
-        aux->representacao = strcat(aux->representacao, m2->representacao);
-        aux->frequencia = m1->frequencia + m2->frequencia;
-        aux->direita = m1;
-        aux->esquerda = m2;
+        // printf("\nTAM:%d", tam);
+        Simbolo *aux = malloc(sizeof(Simbolo));
+        return aux;
     }
-    else if(m2->frequencia > m1->frequencia && tam>=0)
+    else if (tam == 1)
     {
-        aux->representacao = malloc((strlen(m1->representacao) + strlen(m2->representacao) + 1) * sizeof(char));
-        aux->representacao = strcat(aux->representacao, m1->representacao);
-        aux->representacao = strcat(aux->representacao, m2->representacao);
-        aux->frequencia = m1->frequencia + m2->frequencia;
-        aux->direita = m2;
-        aux->esquerda = m1;
+        // printf("\nTAM:%d", tam);
+        Simbolo *aux = malloc(sizeof(Simbolo));
+        arvore(tam - 1, h);
+
     }
-    ordenar(tam - 2, h);
-    arvore(tam-2, h);
+    else if (tam > 1)
+    {
+        // printf("\nTAM:%d", tam);
+        Simbolo *aux = malloc(sizeof(Simbolo));
+        Simbolo *m1 = malloc(sizeof(Simbolo));
+        Simbolo *m2 = malloc(sizeof(Simbolo));
+        memcpy(m1, &h[tam - 1], sizeof(Simbolo));
+        memcpy(m2, &h[tam - 2], sizeof(Simbolo));
+
+        if (m1->frequencia > m2->frequencia)
+        {
+            aux->representacao = malloc((strlen(m1->representacao) + strlen(m2->representacao) + 1) * sizeof(char));
+            aux->representacao = strcat(aux->representacao, m1->representacao);
+            aux->representacao = strcat(aux->representacao, m2->representacao);
+            aux->frequencia = m1->frequencia + m2->frequencia;
+            aux->direita = m1;
+            aux->esquerda = m2;
+        }
+        else if (m2->frequencia > m1->frequencia)
+        {
+            aux->representacao = malloc((strlen(m1->representacao) + strlen(m2->representacao) + 1) * sizeof(char));
+            aux->representacao = strcat(aux->representacao, m2->representacao);
+            aux->representacao = strcat(aux->representacao, m1->representacao);
+            aux->frequencia = m1->frequencia + m2->frequencia;
+            aux->direita = m2;
+            aux->esquerda = m1;
+        }
+        printf("\nPAI: %s-%d",aux->representacao,aux->frequencia);
+        printf("\nFiMAIor: %s-%d.", aux->direita->representacao, aux->direita->frequencia);
+        printf("\nFiMENor: %s-%d.", aux->esquerda->representacao, aux->esquerda->frequencia);
+        ordenar(tam - 2, h);
+        arvore(tam - 2, h);
+    }
 }
