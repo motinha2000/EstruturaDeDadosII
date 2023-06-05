@@ -34,9 +34,8 @@ int main(int argc, char *argv[])
     Simbolo *h = malloc(tam * sizeof(Simbolo));
     iniciarStruct(tam, h);
     folhas(tam, cont, v, h);
-    ordenar(tam, h);
-    exibe(tam, v, h);printf("\n");
-    arvore(tam,h);
-    //exibe(tam, v, h);
+    //ordenar(tam, h);
+    exibe(tam,h);
+    Simbolo *huffman = arvore(tam, h);
     fclose(arquivo);
 }

@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void exibe(int tam, char *v, Simbolo *h)
+void exibe(int tam, Simbolo *h)
 {
     for (int j = 0; j < tam; j++) // EXIBIÇÃO STRUCT NAO ANULADO
     {
@@ -100,32 +100,36 @@ void ordenar(int tam, Simbolo *h)
         }
     }
 }
-void arvore(int tam, Simbolo *h)
+Simbolo *arvore(int tam, Simbolo *h)
 {   
     Simbolo *aux = malloc(sizeof(Simbolo));
+    aux->direita = NULL;
+    aux->esquerda = NULL;
+    if(tam<0)
+        return aux;
     Simbolo *m1 = malloc(sizeof(Simbolo));
     Simbolo *m2 = malloc(sizeof(Simbolo));
-    *m1 = h[tam-1];//F-5
-    *m2 = h[tam-2];//E-9
-    if(m1->frequencia>=m2->frequencia)
-    {   
-        char *str = malloc(sizeof(char));
-        aux->representacao=strcat(str,m1->representacao);
-        aux->representacao=strcat(str,m2->representacao);
-        aux->direita=m1;
-        aux->esquerda=m2;
-    }
-    else if(m1->frequencia<=m2->frequencia)
-    {   
-        char *str = malloc(sizeof(char));;
-        aux->representacao=strcat(str,m2->representacao);
-        aux->representacao=strcat(str,m1->representacao);
-        aux->direita=m2;
-        aux->esquerda=m1;
-    }
-    printf("\n%s",aux->esquerda->representacao);
-    printf("\n%s",aux->direita->representacao);
-    printf("\n%s",aux->representacao);
+    memcpy(m1, &h[tam - 1], sizeof(Simbolo));
+    memcpy(m2, &h[tam - 2], sizeof(Simbolo));
 
-    
+    if (m1->frequencia > m2->frequencia && tam >= 0)
+    {
+        aux->representacao = malloc((strlen(m1->representacao) + strlen(m2->representacao) + 1) * sizeof(char));
+        aux->representacao = strcat(aux->representacao, m1->representacao);
+        aux->representacao = strcat(aux->representacao, m2->representacao);
+        aux->frequencia = m1->frequencia + m2->frequencia;
+        aux->direita = m1;
+        aux->esquerda = m2;
+    }
+    else if(m2->frequencia > m1->frequencia && tam>=0)
+    {
+        aux->representacao = malloc((strlen(m1->representacao) + strlen(m2->representacao) + 1) * sizeof(char));
+        aux->representacao = strcat(aux->representacao, m1->representacao);
+        aux->representacao = strcat(aux->representacao, m2->representacao);
+        aux->frequencia = m1->frequencia + m2->frequencia;
+        aux->direita = m2;
+        aux->esquerda = m1;
+    }
+    ordenar(tam - 2, h);
+    arvore(tam-2, h);
 }
