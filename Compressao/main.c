@@ -36,6 +36,9 @@ int main(int argc, char *argv[])
     folhas(tam, cont, v, h);
     ordenar(tam, h);
     exibe(tam,h);
-    Simbolo *huffman = arvore(tam, h);
+    arvore(tam, h);
+    printf("REPRESENTACAO: '%s' - FREQUENCIA:%d",
+    h[0].representacao, 
+    h[0].frequencia);
     fclose(arquivo);
 }
