@@ -141,3 +141,18 @@ void arvore(int tam, Simbolo *h)
     arvore(tam - 1,h);
     
 }
+
+void huffman(int tam, Simbolo *h, Simbolo *aux)
+{
+    Simbolo *x = malloc(sizeof(Simbolo));
+    memcpy(x, &h[0], sizeof(Simbolo));
+
+    for(int i=0;i<tam;i++)
+    {
+       int l = strlen(aux->representacao);
+       for(aux;strcmp(aux[0].representacao,x->prox)==0;)
+       {
+            aux[i]
+       }
+    }
+}

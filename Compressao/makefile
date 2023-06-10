@@ -1,4 +1,4 @@
 all:
 	clear
 	gcc main.c compress.h compress.c -o huffman
-	./huffman teste.txt
+	./huffman palavras.txt

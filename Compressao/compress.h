@@ -22,3 +22,4 @@ void iniciarStruct(int tam, Simbolo *h);
 void folhas(int tam, int cont, char *v, Simbolo *h);
 void ordenar(int tam, Simbolo *h);
 void arvore(int tam, Simbolo *h);
+void huffman(int tam, Simbolo *h, Simbolo *aux);

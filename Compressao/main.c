@@ -32,13 +32,19 @@ int main(int argc, char *argv[])
     printf("Elemento(s) %d.\n", tam);
 
     Simbolo *h = malloc(tam * sizeof(Simbolo));
+    Simbolo *aux = malloc(tam * sizeof(Simbolo));
     iniciarStruct(tam, h);
+    iniciarStruct(tam, aux);
     folhas(tam, cont, v, h);
+    folhas(tam, cont, v, aux);
     ordenar(tam, h);
-    exibe(tam,h);
+    ordenar(tam, aux);
+    exibe(tam, h);printf("\n");
     arvore(tam, h);
-    printf("REPRESENTACAO: '%s' - FREQUENCIA:%d",
-    h[0].representacao, 
-    h[0].frequencia);
+    // printf("REPRESENTACAO: '%s' - FREQUENCIA:%d",
+    // h[0].direita->direita->esquerda->direita->representacao,
+    // h[0].direita->direita->esquerda->direita->frequencia);
+    //exibe(tam, aux);printf("\n");
+    huffman(tam, h, aux);
     fclose(arquivo);
 }
