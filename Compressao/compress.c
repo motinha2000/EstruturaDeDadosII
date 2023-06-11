@@ -108,13 +108,13 @@ void arvore(int tam, Simbolo *h)
     memcpy(m1, &h[tam - 1], sizeof(Simbolo));
     memcpy(m2, &h[tam - 2], sizeof(Simbolo));
 
-    //h = realloc(h, (tam - 1) * sizeof(Simbolo));
-    //printf("\nM1:%s-%d", m1->representacao, m1->frequencia);
-    //printf("\nM2:%s-%d", m2->representacao, m2->frequencia);
+    // h = realloc(h, (tam - 1) * sizeof(Simbolo));
+    // printf("\nM1:%s-%d", m1->representacao, m1->frequencia);
+    // printf("\nM2:%s-%d", m2->representacao, m2->frequencia);
 
-    //printf("\nTAM:%d\n",tam);
-    if(tam==1)
-        return ;
+    // printf("\nTAM:%d\n",tam);
+    if (tam == 1)
+        return;
 
     if (m1->frequencia > m2->frequencia)
     {
@@ -134,25 +134,47 @@ void arvore(int tam, Simbolo *h)
         h[tam - 2].esquerda = m1;
         h[tam - 2].direita = m2;
     }
-    //printf("\nPAI: posicao:%d.%s-%d", tam - 2, h[tam - 2].representacao, h[tam - 2].frequencia);
-    //printf("\nFiMAIor: %s-%d.", h[tam - 2].direita->representacao, h[tam - 2].direita->frequencia);
-    //printf("\nFiMENor: %s-%d.\n", h[tam - 2].esquerda->representacao, h[tam - 2].esquerda->frequencia);
-    ordenar(tam,h);
-    arvore(tam - 1,h);
-    
+    // printf("\nPAI: posicao:%d.%s-%d", tam - 2, h[tam - 2].representacao, h[tam - 2].frequencia);
+    // printf("\nFiMAIor: %s-%d.", h[tam - 2].direita->representacao, h[tam - 2].direita->frequencia);
+    // printf("\nFiMENor: %s-%d.\n", h[tam - 2].esquerda->representacao, h[tam - 2].esquerda->frequencia);
+    ordenar(tam, h);
+    arvore(tam - 1, h);
 }
 
 void huffman(int tam, Simbolo *h, Simbolo *aux)
 {
+    Simbolo *no = h;
     Simbolo *x = malloc(sizeof(Simbolo));
     memcpy(x, &h[0], sizeof(Simbolo));
-
-    for(int i=0;i<tam;i++)
+    //printf("\nROOT: %s", no->representacao);
+    for (int i = 0; i < tam; i++)
     {
-       int l = strlen(aux->representacao);
-       for(aux;strcmp(aux[0].representacao,x->prox)==0;)
-       {
-            aux[i]
-       }
+        if (aux[i].representacao[0] ==(char)32)
+            printf("\nSPC - ");
+        else if (aux[i].representacao[0] ==(char)10)
+            printf("\nLINE - ");
+        else
+            printf("\n%c - ", aux[i].representacao[0]);
+        while (no != NULL)
+        {
+            if (strcmp(aux[i].representacao, no->representacao) == 0)
+            {
+                // printf("\nENCONTREI!");
+                no = h;
+                break;
+            }
+            char *templeft = strchr(no->esquerda->representacao, aux[i].representacao[0]);
+            char *tempright = strchr(no->direita->representacao, aux[i].representacao[0]);
+            if (no->direita != NULL && tempright != NULL)
+            {
+                printf("0");
+                no = no->direita;
+            }
+            if (no->esquerda != NULL && templeft != NULL)
+            {
+                printf("1");
+                no = no->esquerda;
+            }
+        }
     }
 }
