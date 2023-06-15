@@ -25,7 +25,7 @@ void exibe(int tam, Simbolo *h)
     }
 }
 
-int elementosUnicos(int cont, char *v)
+int elementosUnicos(int cont, char *v)//CONTA QUANTOS CARACTERES IGUAIS PRA FRENTE DELE TEM
 {
     int e = 0;
     for (int z = 0; z < cont; z++)
@@ -33,7 +33,7 @@ int elementosUnicos(int cont, char *v)
         int repetido = 0;
         for (int x = z + 1; x < cont; x++)
         {
-            if (v[z] == v[x] && !repetido)
+            if (v[z] == v[x] && !repetido)//NAO É 1
             {
                 e++;
                 repetido = 1;
@@ -177,4 +177,9 @@ void huffman(int tam, Simbolo *h, Simbolo *aux)
             }
         }
     }
+}
+
+void compressao()
+{
+    
 }
